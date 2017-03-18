@@ -286,3 +286,8 @@ header {
 .leaflet-popup-content p {
   margin: 10px 0 ;
 }
+
+.home {
+	float: left;
+	position: relative;
+}
