@@ -1,8 +1,14 @@
 from flask import Flask, render_template, request
 from models import db, User
 from forms import SignupForm
+import sys
+import logging
 
 app = Flask(__name__)
+# import sys and logging and the following two lines added as per http://stackoverflow.com/questions/27882479/flask-projects-on-heroku-returns-500-internal-server-error
+
+app.logger.addHandler(logging.StreamHandler(sys.stdout))
+app.logger.setLevel(logging.ERROR)
 
 #app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://localhost/learningflask' ->NGL - Changed to below because of the error: "Flask sqlalchemy.exc.OperationalError: (psycopg2.OperationalError) FATAL: role does not exist"
 # Solution source: "http://www.bogotobogo.com/python/Flask/Python_Flask_App_0_Word_Count_Errors_Fixes.php"
