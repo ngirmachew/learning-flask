@@ -5,6 +5,7 @@ from forms import SignupForm
 app = Flask(__name__)
 
 app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://localhost/learningflask'
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False #->Save resources use
 db.init_app(app)
 
 app.secret_key = "development-key"
@@ -22,7 +23,7 @@ def signup():
     form = SignupForm()
     
     if request.method == 'POST':
-        if form.validate == False:
+        if form.validate() == False:
             return render_template('signup.html', form = form)
         else:
             return "Success!"
